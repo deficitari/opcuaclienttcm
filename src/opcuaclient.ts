@@ -14,16 +14,16 @@ import { Machine, Variable } from "./types/types";
 import { MQTTAgent } from './mqttagent'
 
 // TODO1: Posar la Url del servidor que s'especifica en el PDF de la pràctica
-const endpointUrl = 'opc.tcp://88.99.90.83:26543/UA/Heller'
+const endpointUrl = 'URL_ENDPOINT'
 
-// TODO2: Afegir les dos varaibles que volem monitoritzar que previament hem vist
+// TODO2: Afegir les dos varaibles que volem monitoritzar que previament hem vist i els seus nodeIds que veiem en el PROSYS Browser
 const sharedVariables: Variable[] = [
-    { name: 'on', nodeId: 'ns=1;b=1020FFAB' },
-    { name: 'power', nodeId: 'ns=1;b=1020FFAA' },
+    { name: 'example1', nodeId: 'ns=4;b=6666TTTT' },
+    { name: 'example2', nodeId: 'ns=2;b=8888YYYY' },
 ]
 
 // TODO3: Afegir el thingToken del dispositiu creat a la plataforma IOT thethings.io
-const machine: Machine = { name: 'Heller CE460X1000', endpointURL: endpointUrl, thingToken: 'AEMqSWxUTNgQdTxgmtncLazmfHQJfKE7xUIlfh-WJeE', variables: sharedVariables }
+const machine: Machine = { name: 'Heller CE460X1000', endpointURL: endpointUrl, thingToken: 'XXXXXXXXXXXXXXXXXXXXXX', variables: sharedVariables }
 
 // Inicialització del agent MQTT que més tard farem servir
 const agentMQTT = new MQTTAgent()
@@ -105,7 +105,7 @@ async function main() {
 
                 /*TODO 4a: Quan rebem un canvi de la varaible monotoritzada, hem de fer una publicació fent servir el protocol mqtt cap
                 al el broker de thethings.io */
-                agentMQTT.publishMonitoredItemValueToIOTPlatorm(machine, variable, dataValue)
+
             });
 
             monitoredItem.on("err", (err_message: string) => {

@@ -33,7 +33,6 @@ export class MQTTAgent {
 
         //Publiquem el valor amb el format que ens demana Thethings.io
         const values = { values: [{ key: variable.name, value: dataValue.value.value }] }
-        this.mqttClient.publish(`v2/things/${machine.thingToken}`, JSON.stringify(values))
 
 
         console.log('Values', JSON.stringify(values), 'published to thethings.io')
