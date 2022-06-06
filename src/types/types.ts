@@ -8,5 +8,4 @@ export type Machine = {
 export type Variable = {
     name: string,
     nodeId: number | string,
-    sId: string
 }

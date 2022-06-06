@@ -27,12 +27,15 @@ export class MQTTAgent {
      */
     public publishMonitoredItemValueToIOTPlatorm(machine: Machine, variable: Variable, dataValue: DataValue): void {
 
+        /*TODO 4b: Publiquem fent servir el client d'MQTT amb la connexió ja establerta definida en aquesta mateixa classe, en el topic 
+        * que ens demana thethings.io: 'v2/things/THING_TOKEN'
+        */
+
         //Publiquem el valor amb el format que ens demana Thethings.io
         const values = { values: [{ key: variable.name, value: dataValue.value.value }] }
         this.mqttClient.publish(`v2/things/${machine.thingToken}`, JSON.stringify(values))
 
-        /*TODO 4b: Publiquem fent servir el client d'MQTT amb la connexió ja establerta definida en aquesta mateixa classe, en el topic 
-        * que ens demana thethings.io: 'v2/things/THING_TOKEN'
-        */
+
+        console.log('Values', JSON.stringify(values), 'published to thethings.io')
     }
 }
